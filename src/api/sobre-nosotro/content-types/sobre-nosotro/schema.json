@@ -1,0 +1,53 @@
+{
+  "kind": "singleType",
+  "collectionName": "sobre_nosotros",
+  "info": {
+    "singularName": "sobre-nosotro",
+    "pluralName": "sobre-nosotros",
+    "displayName": "sobre nosotro",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Mision": {
+      "type": "string",
+      "default": "Misión",
+      "required": true,
+      "minLength": 3
+    },
+    "DescripcionMision": {
+      "type": "blocks",
+      "required": true
+    },
+    "Vision": {
+      "type": "string",
+      "default": "Vision",
+      "required": true,
+      "minLength": 3
+    },
+    "DescripcionVision": {
+      "type": "blocks",
+      "required": true
+    },
+    "Historia": {
+      "type": "string",
+      "default": "Historia Sobre la Asociación",
+      "unique": false,
+      "required": true,
+      "minLength": 3
+    },
+    "DescripcionHistoria": {
+      "type": "blocks",
+      "required": true
+    },
+    "LeadershipTeam": {
+      "displayName": "Leadership Team",
+      "type": "component",
+      "repeatable": true,
+      "component": "leadership-team.leadership-team"
+    }
+  }
+}

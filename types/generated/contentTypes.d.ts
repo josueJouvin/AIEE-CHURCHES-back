@@ -1,5 +1,57 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
+export interface ApiSobreNosotroSobreNosotro extends Struct.SingleTypeSchema {
+  collectionName: 'sobre_nosotros';
+  info: {
+    singularName: 'sobre-nosotro';
+    pluralName: 'sobre-nosotros';
+    displayName: 'sobre nosotro';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Mision: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Schema.Attribute.DefaultTo<'Misi\u00F3n'>;
+    DescripcionMision: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    Vision: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Schema.Attribute.DefaultTo<'Vision'>;
+    DescripcionVision: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    Historia: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Schema.Attribute.DefaultTo<'Historia Sobre la Asociaci\u00F3n'>;
+    DescripcionHistoria: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    LeadershipTeam: Schema.Attribute.Component<
+      'leadership-team.leadership-team',
+      true
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sobre-nosotro.sobre-nosotro'
+    >;
+  };
+}
+
 export interface PluginUploadFile extends Struct.CollectionTypeSchema {
   collectionName: 'files';
   info: {
@@ -850,6 +902,7 @@ export interface AdminTransferTokenPermission
 declare module '@strapi/strapi' {
   export module Public {
     export interface ContentTypeSchemas {
+      'api::sobre-nosotro.sobre-nosotro': ApiSobreNosotroSobreNosotro;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
