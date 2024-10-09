@@ -19,6 +19,10 @@
         "DOMINGO"
       ],
       "required": true
+    },
+    "Hora": {
+      "type": "time",
+      "required": true
     }
   }
 }

@@ -5,9 +5,10 @@ export interface ServicesTypesServicesTypes extends Struct.ComponentSchema {
   info: {
     displayName: 'Services Types';
     icon: 'seed';
+    description: '';
   };
   attributes: {
-    Servicios: Schema.Attribute.Enumeration<
+    Services: Schema.Attribute.Enumeration<
       [
         'Culto Dominical',
         'Estudio B\u00EDblico',
@@ -27,7 +28,7 @@ export interface ServicesTypesServicesTypes extends Struct.ComponentSchema {
         'Grupo de Estudios Teol\u00F3gicos',
         'Consejer\u00EDa Familiar',
         'Ayuno y Oraci\u00F3n',
-        'Otros',
+        'Campamentos',
       ]
     > &
       Schema.Attribute.Required;
@@ -42,23 +43,34 @@ export interface ServicesProgramServicesProgram extends Struct.ComponentSchema {
     description: '';
   };
   attributes: {
-    TipoDeServicio: Schema.Attribute.Component<
-      'services-types.services-types',
-      false
-    > &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 1;
-        },
-        number
-      >;
-    DiaDeServicio: Schema.Attribute.Component<
-      'main-services-day.main-services-day',
-      false
-    >;
-    HoraDeServicio: Schema.Attribute.Time & Schema.Attribute.Required;
     DescripcionMinima: Schema.Attribute.Text;
+    Dia: Schema.Attribute.Enumeration<
+      ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO']
+    >;
+    Hora: Schema.Attribute.Time;
+    Servicio: Schema.Attribute.Enumeration<
+      [
+        'Culto Dominical',
+        'Estudio B\u00EDblico',
+        'Grupo de J\u00F3venes',
+        'Escuela Dominical',
+        'Reuni\u00F3n de Oraci\u00F3n',
+        'Servicio de Alabanza',
+        'Ministerio de Ni\u00F1os',
+        'Alcance Comunitario',
+        'Grupo de Mujeres',
+        'Grupo de Hombres',
+        'Teatro Cristiano',
+        'Taller de Matrimonios',
+        'C\u00E9lulas Familiares',
+        'Ministerio de M\u00FAsica',
+        'Clases de Discipulado',
+        'Grupo de Estudios Teol\u00F3gicos',
+        'Consejer\u00EDa Familiar',
+        'Ayuno y Oraci\u00F3n',
+        'Campamentos',
+      ]
+    >;
   };
 }
 
@@ -90,6 +102,7 @@ export interface MainServicesDayMainServicesDay extends Struct.ComponentSchema {
       ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO']
     > &
       Schema.Attribute.Required;
+    Hora: Schema.Attribute.Time & Schema.Attribute.Required;
   };
 }
 

@@ -505,11 +505,11 @@ export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
     Imagenes: Schema.Attribute.Media<'images', true> &
       Schema.Attribute.Required;
     DireccionMaps: Schema.Attribute.Text;
-    HoraServicioPrincipal: Schema.Attribute.Time & Schema.Attribute.Required;
     DiaServicioPrincipal: Schema.Attribute.Component<
       'main-services-day.main-services-day',
       false
-    >;
+    > &
+      Schema.Attribute.Required;
     Pastor: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -529,7 +529,13 @@ export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
       'services-program.services-program',
       true
     > &
-      Schema.Attribute.Required;
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

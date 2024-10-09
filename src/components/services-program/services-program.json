@@ -7,24 +7,47 @@
   },
   "options": {},
   "attributes": {
-    "TipoDeServicio": {
-      "type": "component",
-      "repeatable": false,
-      "component": "services-types.services-types",
-      "required": true,
-      "min": 1
-    },
-    "DiaDeServicio": {
-      "type": "component",
-      "repeatable": false,
-      "component": "main-services-day.main-services-day"
-    },
-    "HoraDeServicio": {
-      "type": "time",
-      "required": true
-    },
     "DescripcionMinima": {
       "type": "text"
+    },
+    "Dia": {
+      "type": "enumeration",
+      "enum": [
+        "LUNES",
+        "MARTES",
+        "MIERCOLES",
+        "JUEVES",
+        "VIERNES",
+        "SABADO",
+        "DOMINGO"
+      ]
+    },
+    "Hora": {
+      "type": "time"
+    },
+    "Servicio": {
+      "type": "enumeration",
+      "enum": [
+        "Culto Dominical",
+        "Estudio Bíblico",
+        "Grupo de Jóvenes",
+        "Escuela Dominical",
+        "Reunión de Oración",
+        "Servicio de Alabanza",
+        "Ministerio de Niños",
+        "Alcance Comunitario",
+        "Grupo de Mujeres",
+        "Grupo de Hombres",
+        "Teatro Cristiano",
+        "Taller de Matrimonios",
+        "Células Familiares",
+        "Ministerio de Música",
+        "Clases de Discipulado",
+        "Grupo de Estudios Teológicos",
+        "Consejería Familiar",
+        "Ayuno y Oración",
+        "Campamentos"
+      ]
     }
   }
 }

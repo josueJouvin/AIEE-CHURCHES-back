@@ -2,11 +2,12 @@
   "collectionName": "components_services_types_services_types",
   "info": {
     "displayName": "Services Types",
-    "icon": "seed"
+    "icon": "seed",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "Servicios": {
+    "Services": {
       "type": "enumeration",
       "enum": [
         "Culto Dominical",
@@ -27,7 +28,7 @@
         "Grupo de Estudios Teológicos",
         "Consejería Familiar",
         "Ayuno y Oración",
-        "Otros"
+        "Campamentos"
       ],
       "required": true
     }
