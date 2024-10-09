@@ -1,57 +1,5 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
-export interface ApiSobreNosotroSobreNosotro extends Struct.SingleTypeSchema {
-  collectionName: 'sobre_nosotros';
-  info: {
-    singularName: 'sobre-nosotro';
-    pluralName: 'sobre-nosotros';
-    displayName: 'sobre nosotro';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Mision: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }> &
-      Schema.Attribute.DefaultTo<'Misi\u00F3n'>;
-    DescripcionMision: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    Vision: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }> &
-      Schema.Attribute.DefaultTo<'Vision'>;
-    DescripcionVision: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    Historia: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }> &
-      Schema.Attribute.DefaultTo<'Historia Sobre la Asociaci\u00F3n'>;
-    DescripcionHistoria: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    LeadershipTeam: Schema.Attribute.Component<
-      'leadership-team.leadership-team',
-      true
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::sobre-nosotro.sobre-nosotro'
-    >;
-  };
-}
-
 export interface PluginUploadFile extends Struct.CollectionTypeSchema {
   collectionName: 'files';
   info: {
@@ -537,6 +485,115 @@ export interface PluginUsersPermissionsUser
   };
 }
 
+export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
+  collectionName: 'churches';
+  info: {
+    singularName: 'church';
+    pluralName: 'churches';
+    displayName: 'church';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    TituloIglesia: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 5;
+      }>;
+    Imagenes: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.Required;
+    DireccionMaps: Schema.Attribute.Text;
+    HoraServicioPrincipal: Schema.Attribute.Time & Schema.Attribute.Required;
+    DiaServicioPrincipal: Schema.Attribute.Component<
+      'main-services-day.main-services-day',
+      false
+    >;
+    Pastor: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 5;
+      }>;
+    Fundacion: Schema.Attribute.Date & Schema.Attribute.Required;
+    descripcion: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    Parking: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    FotoDelPastor: Schema.Attribute.Media<'files' | 'images'>;
+    RedesSociales: Schema.Attribute.Component<
+      'redes-sociales.redes-sociales',
+      true
+    >;
+    OtrosServicios: Schema.Attribute.Component<
+      'services-program.services-program',
+      true
+    > &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::church.church'>;
+  };
+}
+
+export interface ApiSobreNosotroSobreNosotro extends Struct.SingleTypeSchema {
+  collectionName: 'sobre_nosotros';
+  info: {
+    singularName: 'sobre-nosotro';
+    pluralName: 'sobre-nosotros';
+    displayName: 'sobre nosotro';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Mision: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Schema.Attribute.DefaultTo<'Misi\u00F3n'>;
+    DescripcionMision: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    Vision: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Schema.Attribute.DefaultTo<'Vision'>;
+    DescripcionVision: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    Historia: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }> &
+      Schema.Attribute.DefaultTo<'Historia Sobre la Asociaci\u00F3n'>;
+    DescripcionHistoria: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    LeadershipTeam: Schema.Attribute.Component<
+      'leadership-team.leadership-team',
+      true
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sobre-nosotro.sobre-nosotro'
+    >;
+  };
+}
+
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -902,7 +959,6 @@ export interface AdminTransferTokenPermission
 declare module '@strapi/strapi' {
   export module Public {
     export interface ContentTypeSchemas {
-      'api::sobre-nosotro.sobre-nosotro': ApiSobreNosotroSobreNosotro;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
@@ -913,6 +969,8 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::church.church': ApiChurchChurch;
+      'api::sobre-nosotro.sobre-nosotro': ApiSobreNosotroSobreNosotro;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;

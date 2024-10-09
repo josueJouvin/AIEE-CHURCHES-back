@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_main_services_day_main_services_days",
+  "info": {
+    "displayName": "Services day",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Dia": {
+      "type": "enumeration",
+      "enum": [
+        "LUNES",
+        "MARTES",
+        "MIERCOLES",
+        "JUEVES",
+        "VIERNES",
+        "SABADO",
+        "DOMINGO"
+      ],
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "kind": "collectionType",
+  "collectionName": "churches",
+  "info": {
+    "singularName": "church",
+    "pluralName": "churches",
+    "displayName": "church",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "TituloIglesia": {
+      "type": "string",
+      "required": true,
+      "minLength": 5
+    },
+    "Imagenes": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "DireccionMaps": {
+      "type": "text"
+    },
+    "HoraServicioPrincipal": {
+      "required": true,
+      "type": "time"
+    },
+    "DiaServicioPrincipal": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main-services-day.main-services-day"
+    },
+    "Pastor": {
+      "type": "string",
+      "required": true,
+      "minLength": 5
+    },
+    "Fundacion": {
+      "type": "date",
+      "required": true
+    },
+    "descripcion": {
+      "type": "blocks",
+      "required": true
+    },
+    "Parking": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "FotoDelPastor": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files",
+        "images"
+      ]
+    },
+    "RedesSociales": {
+      "type": "component",
+      "repeatable": true,
+      "component": "redes-sociales.redes-sociales"
+    },
+    "OtrosServicios": {
+      "type": "component",
+      "repeatable": true,
+      "component": "services-program.services-program",
+      "required": true
+    }
+  }
+}

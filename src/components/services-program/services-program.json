@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_services_program_services_programs",
+  "info": {
+    "displayName": "Services Program",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "TipoDeServicio": {
+      "type": "component",
+      "repeatable": false,
+      "component": "services-types.services-types",
+      "required": true,
+      "min": 1
+    },
+    "DiaDeServicio": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main-services-day.main-services-day"
+    },
+    "HoraDeServicio": {
+      "type": "time",
+      "required": true
+    },
+    "DescripcionMinima": {
+      "type": "text"
+    }
+  }
+}

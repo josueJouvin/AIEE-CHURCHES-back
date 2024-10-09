@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_redes_sociales_redes_sociales",
+  "info": {
+    "displayName": "Redes Sociales",
+    "icon": "globe"
+  },
+  "options": {},
+  "attributes": {
+    "RedSocial": {
+      "type": "string",
+      "required": true,
+      "minLength": 3
+    },
+    "Link": {
+      "type": "string",
+      "required": true,
+      "regex": "/^(https?:\\/\\/)?(www\\.)?(facebook|twitter|instagram|linkedin|tiktok|youtube)\\.com\\/[A-Za-z0-9._%+-]+\\/?$/"
+    }
+  }
+}

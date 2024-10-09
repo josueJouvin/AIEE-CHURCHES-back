@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_services_types_services_types",
+  "info": {
+    "displayName": "Services Types",
+    "icon": "seed"
+  },
+  "options": {},
+  "attributes": {
+    "Servicios": {
+      "type": "enumeration",
+      "enum": [
+        "Culto Dominical",
+        "Estudio Bíblico",
+        "Grupo de Jóvenes",
+        "Escuela Dominical",
+        "Reunión de Oración",
+        "Servicio de Alabanza",
+        "Ministerio de Niños",
+        "Alcance Comunitario",
+        "Grupo de Mujeres",
+        "Grupo de Hombres",
+        "Teatro Cristiano",
+        "Taller de Matrimonios",
+        "Células Familiares",
+        "Ministerio de Música",
+        "Clases de Discipulado",
+        "Grupo de Estudios Teológicos",
+        "Consejería Familiar",
+        "Ayuno y Oración",
+        "Otros"
+      ],
+      "required": true
+    }
+  }
+}
