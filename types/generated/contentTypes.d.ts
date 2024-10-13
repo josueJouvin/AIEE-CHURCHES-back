@@ -502,7 +502,7 @@ export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         minLength: 5;
       }>;
-    Imagenes: Schema.Attribute.Media<'images', true> &
+    ImagenIglesiaPrincipal: Schema.Attribute.Media<'images'> &
       Schema.Attribute.Required;
     DireccionMaps: Schema.Attribute.Text;
     DiaServicioPrincipal: Schema.Attribute.Component<
@@ -536,6 +536,11 @@ export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
         },
         number
       >;
+    whatsapp: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 9;
+      }>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -545,6 +550,30 @@ export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::church.church'>;
+  };
+}
+
+export interface ApiEventEvent extends Struct.CollectionTypeSchema {
+  collectionName: 'events';
+  info: {
+    singularName: 'event';
+    pluralName: 'events';
+    displayName: 'event';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    titulo: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'>;
   };
 }
 
@@ -976,6 +1005,7 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::church.church': ApiChurchChurch;
+      'api::event.event': ApiEventEvent;
       'api::sobre-nosotro.sobre-nosotro': ApiSobreNosotroSobreNosotro;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;

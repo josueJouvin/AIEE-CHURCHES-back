@@ -17,9 +17,9 @@
       "required": true,
       "minLength": 5
     },
-    "Imagenes": {
+    "ImagenIglesiaPrincipal": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "allowedTypes": [
         "images"
@@ -73,6 +73,11 @@
       "component": "services-program.services-program",
       "required": true,
       "min": 1
+    },
+    "whatsapp": {
+      "type": "string",
+      "required": true,
+      "minLength": 9
     }
   }
 }

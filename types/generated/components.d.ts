@@ -35,6 +35,51 @@ export interface ServicesTypesServicesTypes extends Struct.ComponentSchema {
   };
 }
 
+export interface MainServicesDayMainServicesDay extends Struct.ComponentSchema {
+  collectionName: 'components_main_services_day_main_services_days';
+  info: {
+    displayName: 'Services day';
+    icon: 'bulletList';
+    description: '';
+  };
+  attributes: {
+    Dia: Schema.Attribute.Enumeration<
+      ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO']
+    > &
+      Schema.Attribute.Required;
+    Hora: Schema.Attribute.Time & Schema.Attribute.Required;
+  };
+}
+
+export interface RedesSocialesRedesSociales extends Struct.ComponentSchema {
+  collectionName: 'components_redes_sociales_redes_sociales';
+  info: {
+    displayName: 'Redes Sociales';
+    icon: 'globe';
+  };
+  attributes: {
+    RedSocial: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }>;
+    Link: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface LeadershipTeamLeadershipTeam extends Struct.ComponentSchema {
+  collectionName: 'components_leadership_team_leadership_teams';
+  info: {
+    displayName: 'Leadership Team';
+    icon: 'user';
+  };
+  attributes: {
+    Nombre: Schema.Attribute.String;
+    Ocupacion: Schema.Attribute.String;
+    Imagen: Schema.Attribute.Media<'images'>;
+  };
+}
+
 export interface ServicesProgramServicesProgram extends Struct.ComponentSchema {
   collectionName: 'components_services_program_services_programs';
   info: {
@@ -74,59 +119,14 @@ export interface ServicesProgramServicesProgram extends Struct.ComponentSchema {
   };
 }
 
-export interface RedesSocialesRedesSociales extends Struct.ComponentSchema {
-  collectionName: 'components_redes_sociales_redes_sociales';
-  info: {
-    displayName: 'Redes Sociales';
-    icon: 'globe';
-  };
-  attributes: {
-    RedSocial: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        minLength: 3;
-      }>;
-    Link: Schema.Attribute.String & Schema.Attribute.Required;
-  };
-}
-
-export interface MainServicesDayMainServicesDay extends Struct.ComponentSchema {
-  collectionName: 'components_main_services_day_main_services_days';
-  info: {
-    displayName: 'Services day';
-    icon: 'bulletList';
-    description: '';
-  };
-  attributes: {
-    Dia: Schema.Attribute.Enumeration<
-      ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO']
-    > &
-      Schema.Attribute.Required;
-    Hora: Schema.Attribute.Time & Schema.Attribute.Required;
-  };
-}
-
-export interface LeadershipTeamLeadershipTeam extends Struct.ComponentSchema {
-  collectionName: 'components_leadership_team_leadership_teams';
-  info: {
-    displayName: 'Leadership Team';
-    icon: 'user';
-  };
-  attributes: {
-    Nombre: Schema.Attribute.String;
-    Ocupacion: Schema.Attribute.String;
-    Imagen: Schema.Attribute.Media<'images'>;
-  };
-}
-
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'services-types.services-types': ServicesTypesServicesTypes;
-      'services-program.services-program': ServicesProgramServicesProgram;
-      'redes-sociales.redes-sociales': RedesSocialesRedesSociales;
       'main-services-day.main-services-day': MainServicesDayMainServicesDay;
+      'redes-sociales.redes-sociales': RedesSocialesRedesSociales;
       'leadership-team.leadership-team': LeadershipTeamLeadershipTeam;
+      'services-program.services-program': ServicesProgramServicesProgram;
     }
   }
 }
