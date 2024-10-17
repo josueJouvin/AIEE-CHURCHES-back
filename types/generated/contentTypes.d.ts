@@ -553,30 +553,6 @@ export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiEventEvent extends Struct.CollectionTypeSchema {
-  collectionName: 'events';
-  info: {
-    singularName: 'event';
-    pluralName: 'events';
-    displayName: 'event';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    titulo: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'>;
-  };
-}
-
 export interface ApiSobreNosotroSobreNosotro extends Struct.SingleTypeSchema {
   collectionName: 'sobre_nosotros';
   info: {
@@ -1005,7 +981,6 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::church.church': ApiChurchChurch;
-      'api::event.event': ApiEventEvent;
       'api::sobre-nosotro.sobre-nosotro': ApiSobreNosotroSobreNosotro;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
