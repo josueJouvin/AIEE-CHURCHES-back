@@ -106,19 +106,6 @@ export interface MainServicesDayMainServicesDay extends Struct.ComponentSchema {
   };
 }
 
-export interface LeadershipTeamLeadershipTeam extends Struct.ComponentSchema {
-  collectionName: 'components_leadership_team_leadership_teams';
-  info: {
-    displayName: 'Leadership Team';
-    icon: 'user';
-  };
-  attributes: {
-    Nombre: Schema.Attribute.String;
-    Ocupacion: Schema.Attribute.String;
-    Imagen: Schema.Attribute.Media<'images'>;
-  };
-}
-
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -126,7 +113,6 @@ declare module '@strapi/strapi' {
       'services-program.services-program': ServicesProgramServicesProgram;
       'redes-sociales.redes-sociales': RedesSocialesRedesSociales;
       'main-services-day.main-services-day': MainServicesDayMainServicesDay;
-      'leadership-team.leadership-team': LeadershipTeamLeadershipTeam;
     }
   }
 }

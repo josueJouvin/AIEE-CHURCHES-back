@@ -42,12 +42,6 @@
     "DescripcionHistoria": {
       "type": "blocks",
       "required": true
-    },
-    "LeadershipTeam": {
-      "displayName": "Leadership Team",
-      "type": "component",
-      "repeatable": true,
-      "component": "leadership-team.leadership-team"
     }
   }
 }

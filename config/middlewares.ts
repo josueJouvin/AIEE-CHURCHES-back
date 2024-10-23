@@ -15,7 +15,6 @@ export default [
       },
     },
   },
-  "global::uploadMiddleware",
 
   'strapi::cors',
   'strapi::poweredBy',

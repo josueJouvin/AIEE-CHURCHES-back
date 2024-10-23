@@ -510,17 +510,11 @@ export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
       false
     > &
       Schema.Attribute.Required;
-    Pastor: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        minLength: 5;
-      }>;
     Fundacion: Schema.Attribute.Date & Schema.Attribute.Required;
     descripcion: Schema.Attribute.Blocks & Schema.Attribute.Required;
     Parking: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
-    FotoDelPastor: Schema.Attribute.Media<'files' | 'images'>;
     RedesSociales: Schema.Attribute.Component<
       'redes-sociales.redes-sociales',
       true
@@ -539,8 +533,9 @@ export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
     whatsapp: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
-        minLength: 9;
+        minLength: 10;
       }>;
+    lider: Schema.Attribute.Relation<'oneToOne', 'api::lider.lider'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -550,6 +545,36 @@ export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::church.church'>;
+  };
+}
+
+export interface ApiLiderLider extends Struct.CollectionTypeSchema {
+  collectionName: 'lideres';
+  info: {
+    singularName: 'lider';
+    pluralName: 'lideres';
+    displayName: 'lider';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Nombre: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 5;
+      }>;
+    Cargo: Schema.Attribute.String;
+    Foto: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::lider.lider'>;
   };
 }
 
@@ -586,10 +611,6 @@ export interface ApiSobreNosotroSobreNosotro extends Struct.SingleTypeSchema {
       }> &
       Schema.Attribute.DefaultTo<'Historia Sobre la Asociaci\u00F3n'>;
     DescripcionHistoria: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    LeadershipTeam: Schema.Attribute.Component<
-      'leadership-team.leadership-team',
-      true
-    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -981,6 +1002,7 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::church.church': ApiChurchChurch;
+      'api::lider.lider': ApiLiderLider;
       'api::sobre-nosotro.sobre-nosotro': ApiSobreNosotroSobreNosotro;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
