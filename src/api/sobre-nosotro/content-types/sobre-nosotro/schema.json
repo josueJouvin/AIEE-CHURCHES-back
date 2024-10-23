@@ -42,6 +42,11 @@
     "DescripcionHistoria": {
       "type": "blocks",
       "required": true
+    },
+    "liders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lider.lider"
     }
   }
 }
