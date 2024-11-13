@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_leadership_team_leadership_teams",
+  "info": {
+    "displayName": "Leadership Team",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string"
+    },
+    "Ocupacion": {
+      "type": "string"
+    },
+    "Imagen": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

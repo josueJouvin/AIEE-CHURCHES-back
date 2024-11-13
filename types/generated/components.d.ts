@@ -1,5 +1,18 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface LeadershipTeamLeadershipTeam extends Struct.ComponentSchema {
+  collectionName: 'components_leadership_team_leadership_teams';
+  info: {
+    displayName: 'Leadership Team';
+    icon: 'user';
+  };
+  attributes: {
+    Imagen: Schema.Attribute.Media<'images'>;
+    Nombre: Schema.Attribute.String;
+    Ocupacion: Schema.Attribute.String;
+  };
+}
+
 export interface MainServicesDayMainServicesDay extends Struct.ComponentSchema {
   collectionName: 'components_main_services_day_main_services_days';
   info: {
@@ -162,6 +175,7 @@ export interface SharedSeo extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'leadership-team.leadership-team': LeadershipTeamLeadershipTeam;
       'main-services-day.main-services-day': MainServicesDayMainServicesDay;
       'redes-sociales.redes-sociales': RedesSocialesRedesSociales;
       'services-program.services-program': ServicesProgramServicesProgram;

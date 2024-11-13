@@ -391,6 +391,8 @@ export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Required;
     DireccionMaps: Schema.Attribute.Text;
+    district: Schema.Attribute.Relation<'manyToOne', 'api::district.district'>;
+    evento: Schema.Attribute.Relation<'oneToOne', 'api::evento.evento'>;
     Fundacion: Schema.Attribute.Date & Schema.Attribute.Required;
     ImagenIglesiaPrincipal: Schema.Attribute.Media<'images'> &
       Schema.Attribute.Required;
@@ -437,9 +439,59 @@ export interface ApiChurchChurch extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiDistrictDistrict extends Struct.CollectionTypeSchema {
+  collectionName: 'districts';
+  info: {
+    description: '';
+    displayName: 'District';
+    pluralName: 'districts';
+    singularName: 'district';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    church: Schema.Attribute.Relation<'oneToMany', 'api::church.church'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Descripcion: Schema.Attribute.Blocks;
+    Distrito: Schema.Attribute.Enumeration<
+      [
+        'Distrito Norte',
+        'Distrito Sur',
+        'Distrito Este',
+        'Distrito Oeste',
+        'Distrito Central',
+        'Distrito Costa',
+        'Distrito Sierra',
+        'Distrito Monta\u00F1a',
+        'Distrito Valle',
+        'Distrito Capital',
+      ]
+    >;
+    ImagenDistrito: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    lider: Schema.Attribute.Relation<'oneToOne', 'api::lider.lider'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::district.district'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Titulo: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
   collectionName: 'eventos';
   info: {
+    description: '';
     displayName: 'Evento';
     pluralName: 'eventos';
     singularName: 'evento';
@@ -448,9 +500,21 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    church: Schema.Attribute.Relation<'oneToOne', 'api::church.church'>;
+    Contacto: Schema.Attribute.Email & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Descripcion: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    fechaEvento: Schema.Attribute.Component<
+      'main-services-day.main-services-day',
+      false
+    > &
+      Schema.Attribute.Required;
+    GaleriaImagenes: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.Required;
+    ImagenPrincipal: Schema.Attribute.Media<'images', true> &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -458,6 +522,54 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    Telefono: Schema.Attribute.String;
+    TipoEvento: Schema.Attribute.Enumeration<
+      [
+        'Culto de damas',
+        'Desayuno de mujeres',
+        'Taller de manualidades',
+        'Reuni\u00F3n de intercesi\u00F3n de mujeres',
+        'Conferencia para mujeres',
+        'Desayuno de varones',
+        'Reuni\u00F3n de hombres',
+        'Retiro de hombres',
+        'Taller de liderazgo',
+        'Reuni\u00F3n de j\u00F3venes',
+        'Noche de alabanza',
+        'Retiro juvenil',
+        'Actividades deportivas',
+        'Caf\u00E9 y conversaci\u00F3n',
+        'Escuela dominical',
+        'Club b\u00EDblico',
+        'Vacaciones b\u00EDblicas',
+        'Festival infantil',
+        'D\u00EDa del ni\u00F1o',
+        'Estudio b\u00EDblico',
+        'Discipulado',
+        'Escuela de l\u00EDderes',
+        'Seminario teol\u00F3gico',
+        'Taller de evangelismo',
+        'Bautismos',
+        'Bodas',
+        'Presentaci\u00F3n de ni\u00F1os',
+        'Aniversario de la iglesia',
+        'Conciertos de alabanza',
+        'Obra social',
+        'Visitas a hospitales',
+        'Evangelizaci\u00F3n',
+        'Misiones',
+        'Ayuda comunitaria',
+        'C\u00E9lulas familiares',
+        'Grupos de hogar',
+        'Reuniones por zonas',
+        'Grupos de crecimiento',
+        'Picnic familiar',
+        'Retiro familiar',
+        'D\u00EDa de la familia',
+        'Convivencia familiar',
+        'Celebraciones festivas',
+      ]
+    >;
     Titulo: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
@@ -472,6 +584,7 @@ export interface ApiEventoEvento extends Struct.CollectionTypeSchema {
 export interface ApiLiderLider extends Struct.CollectionTypeSchema {
   collectionName: 'lideres';
   info: {
+    description: '';
     displayName: 'lider';
     pluralName: 'lideres';
     singularName: 'lider';
@@ -484,6 +597,7 @@ export interface ApiLiderLider extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    district: Schema.Attribute.Relation<'oneToOne', 'api::district.district'>;
     Foto: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::lider.lider'> &
@@ -1056,6 +1170,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::church.church': ApiChurchChurch;
+      'api::district.district': ApiDistrictDistrict;
       'api::evento.evento': ApiEventoEvento;
       'api::lider.lider': ApiLiderLider;
       'api::sobre-nosotro.sobre-nosotro': ApiSobreNosotroSobreNosotro;
