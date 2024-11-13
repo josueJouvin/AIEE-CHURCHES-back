@@ -70,6 +70,23 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::lider.lider"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "evento": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::evento.evento",
+      "mappedBy": "church"
+    },
+    "district": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::district.district",
+      "inversedBy": "church"
     }
   }
 }

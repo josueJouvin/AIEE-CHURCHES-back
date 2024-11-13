@@ -1,0 +1,108 @@
+{
+  "kind": "collectionType",
+  "collectionName": "eventos",
+  "info": {
+    "singularName": "evento",
+    "pluralName": "eventos",
+    "displayName": "Evento",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titulo": {
+      "type": "string",
+      "required": true,
+      "minLength": 10
+    },
+    "ImagenPrincipal": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Descripcion": {
+      "type": "blocks",
+      "required": true
+    },
+    "fechaEvento": {
+      "type": "component",
+      "repeatable": false,
+      "component": "main-services-day.main-services-day",
+      "required": true
+    },
+    "GaleriaImagenes": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "church": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::church.church",
+      "inversedBy": "evento"
+    },
+    "TipoEvento": {
+      "type": "enumeration",
+      "enum": [
+        "Culto de damas",
+        "Desayuno de mujeres",
+        "Taller de manualidades",
+        "Reunión de intercesión de mujeres",
+        "Conferencia para mujeres",
+        "Desayuno de varones",
+        "Reunión de hombres",
+        "Retiro de hombres",
+        "Taller de liderazgo",
+        "Reunión de jóvenes",
+        "Noche de alabanza",
+        "Retiro juvenil",
+        "Actividades deportivas",
+        "Café y conversación",
+        "Escuela dominical",
+        "Club bíblico",
+        "Vacaciones bíblicas",
+        "Festival infantil",
+        "Día del niño",
+        "Estudio bíblico",
+        "Discipulado",
+        "Escuela de líderes",
+        "Seminario teológico",
+        "Taller de evangelismo",
+        "Bautismos",
+        "Bodas",
+        "Presentación de niños",
+        "Aniversario de la iglesia",
+        "Conciertos de alabanza",
+        "Obra social",
+        "Visitas a hospitales",
+        "Evangelización",
+        "Misiones",
+        "Ayuda comunitaria",
+        "Células familiares",
+        "Grupos de hogar",
+        "Reuniones por zonas",
+        "Grupos de crecimiento",
+        "Picnic familiar",
+        "Retiro familiar",
+        "Día de la familia",
+        "Convivencia familiar",
+        "Celebraciones festivas"
+      ]
+    },
+    "Contacto": {
+      "type": "email",
+      "required": true
+    },
+    "Telefono": {
+      "type": "string"
+    }
+  }
+}

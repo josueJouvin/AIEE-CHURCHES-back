@@ -1,5 +1,18 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface LeadershipTeamLeadershipTeam extends Struct.ComponentSchema {
+  collectionName: 'components_leadership_team_leadership_teams';
+  info: {
+    displayName: 'Leadership Team';
+    icon: 'user';
+  };
+  attributes: {
+    Imagen: Schema.Attribute.Media<'images'>;
+    Nombre: Schema.Attribute.String;
+    Ocupacion: Schema.Attribute.String;
+  };
+}
+
 export interface MainServicesDayMainServicesDay extends Struct.ComponentSchema {
   collectionName: 'components_main_services_day_main_services_days';
   info: {
@@ -106,13 +119,69 @@ export interface ServicesTypesServicesTypes extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedMetaSocial extends Struct.ComponentSchema {
+  collectionName: 'components_shared_meta_socials';
+  info: {
+    description: '';
+    displayName: 'metaSocial';
+    icon: 'project-diagram';
+  };
+  attributes: {
+    description: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 65;
+      }>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    socialNetwork: Schema.Attribute.Enumeration<
+      ['Facebook', 'Twitter', 'WhatsApp']
+    > &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+  };
+}
+
+export interface SharedSeo extends Struct.ComponentSchema {
+  collectionName: 'components_shared_seos';
+  info: {
+    description: '';
+    displayName: 'seo';
+    icon: 'search';
+  };
+  attributes: {
+    canonicalURL: Schema.Attribute.String;
+    keywords: Schema.Attribute.Text;
+    metaDescription: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 160;
+        minLength: 50;
+      }>;
+    metaImage: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+    metaRobots: Schema.Attribute.String;
+    metaSocial: Schema.Attribute.Component<'shared.meta-social', true>;
+    metaTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 60;
+      }>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'leadership-team.leadership-team': LeadershipTeamLeadershipTeam;
       'main-services-day.main-services-day': MainServicesDayMainServicesDay;
       'redes-sociales.redes-sociales': RedesSocialesRedesSociales;
       'services-program.services-program': ServicesProgramServicesProgram;
       'services-types.services-types': ServicesTypesServicesTypes;
+      'shared.meta-social': SharedMetaSocial;
+      'shared.seo': SharedSeo;
     }
   }
 }
